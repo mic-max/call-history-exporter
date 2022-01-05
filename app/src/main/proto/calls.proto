@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package calls;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+message Call {
+    string number = 1;
+    google.protobuf.Timestamp start = 2;
+    google.protobuf.Duration duration = 3;
+
+    enum CallType {
+        Incoming = 0;
+        Outgoing = 1;
+        Missed = 2;
+        Voicemail = 3;
+        Rejected = 4;
+        Blocked = 5;
+        AnsweredExternally = 6;
+    }
+
+    CallType type = 4;
+}
+
+message CallHistory {
+    repeated Call calls = 1;
+}
